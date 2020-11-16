@@ -1,0 +1,20 @@
+name: 'Lint Filenames'
+description: 'This github action validates if all files in a given folder match the given regex pattern.'
+branding:
+  icon: 'folder'
+  color: white
+inputs:
+  path:
+    description: 'The path to a directory to check the filenames.'
+    required: true
+    default: './'
+  pattern:
+    description: 'The regex pattern to match for each of the files in the given directory'
+    required: true
+    default: '/.+/'
+outputs:
+  total-files-analyzed:
+    description: 'The number of files analyzed.'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

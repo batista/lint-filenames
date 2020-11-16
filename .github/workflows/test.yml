@@ -1,0 +1,51 @@
+name: 'build-test'
+on: # rebuild any PRs and main branch changes
+  pull_request:
+  push:
+    branches:
+      - main
+      - 'releases/*'
+
+jobs:
+  build: # make sure build/ci work properly
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          npm install
+      - run: |
+          npm run all
+  tests: # make sure the action works on a clean machine without building
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: name.extension
+        uses: ./
+        with:
+          path: './__tests__/test-files/02-name-dot-extension-files'
+          pattern: "^.+\\..+$"
+
+      - name: .dotfiles
+        uses: ./
+        with:
+          path: './__tests__/test-files/03-dot-files'
+          pattern: "^\\..+$"
+
+      - name: No .dotfiles
+        uses: ./
+        with:
+          path: './__tests__/test-files/04-no-dot-files'
+          pattern: "^[^\\.]+"
+
+      - name: Contains 'a'
+        uses: ./
+        with:
+          path: './__tests__/test-files/05-contains-a-files'
+          pattern: "a+"
+
+      - name: .json files
+        uses: ./
+        with:
+          path: './__tests__/test-files/06-json-files'
+          pattern: "\\.json$"
