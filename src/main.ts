@@ -1,19 +1,32 @@
-import * as core from '@actions/core'
-import {wait} from './wait'
+import * as core from '@actions/core';
+import * as github from '@actions/github';
+
+import { validateFilenames } from './validate-filenames';
+
+const DEFAULT_PATTERN = '^.+\\..+$';
+const DEFAULT_PATH = '.';
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
+    console.log('====================');
+    console.log('|  Lint Filenames  |');
+    console.log('====================');
 
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
+    const path = core.getInput('path', { required: true }) || DEFAULT_PATH;
+    const pattern = new RegExp(
+      core.getInput('pattern', { required: true }) || DEFAULT_PATTERN
+    );
 
-    core.setOutput('time', new Date().toTimeString())
+    const output = await validateFilenames(path, pattern);
+
+    core.setOutput('total-files-analyzed', output.totalFilesAnalyzed);
+
+    // Get the JSON webhook payload for the event that triggered the workflow
+    const payload = JSON.stringify(github.context.payload, undefined, 2);
+    core.debug(`The event payload: ${payload}`);
   } catch (error) {
-    core.setFailed(error.message)
+    core.setFailed(error.message);
   }
 }
 
-run()
+run();

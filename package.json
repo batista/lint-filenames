@@ -1,8 +1,8 @@
 {
-  "name": "typescript-action",
-  "version": "0.0.0",
+  "name": "lint-filenames",
+  "version": "0.0.1",
   "private": true,
-  "description": "TypeScript template action",
+  "description": "This github action validates if all files in a given folder match the given regex pattern.",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -15,31 +15,38 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/batista/lint-filenames.git"
   },
   "keywords": [
     "actions",
-    "node",
-    "setup"
+    "github",
+    "lint",
+    "linting",
+    "filename",
+    "file name",
+    "filenames",
+    "file names",
+    "file",
+    "extension"
   ],
-  "author": "",
+  "author": "Sergio Batista <dev@se.rg.io>",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.6"
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.10",
-    "@types/node": "^14.10.0",
-    "@typescript-eslint/parser": "^3.10.1",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^14.14.7",
+    "@typescript-eslint/parser": "^4.8.0",
     "@vercel/ncc": "^0.23.0",
-    "eslint": "^7.8.1",
+    "eslint": "^7.13.0",
     "eslint-plugin-github": "^4.1.1",
-    "eslint-plugin-jest": "^23.20.0",
-    "jest": "^24.9.0",
-    "jest-circus": "^26.4.2",
+    "eslint-plugin-jest": "^24.1.3",
+    "jest": "^26.6.3",
     "js-yaml": "^3.14.0",
     "prettier": "2.1.1",
-    "ts-jest": "^24.3.0",
-    "typescript": "^4.0.2"
+    "ts-jest": "^26.4.4",
+    "typescript": "^4.0.5"
   }
 }

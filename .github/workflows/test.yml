@@ -15,10 +15,32 @@ jobs:
           npm install
       - run: |
           npm run all
-  test: # make sure the action works on a clean machine without building
+  tests: # make sure the action works on a clean machine without building
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - uses: ./
         with:
-          milliseconds: 1000
+          path: './__tests__/test-files/02-name-dot-extension-files'
+          pattern: "^.+\\..+$"
+
+      - uses: ./
+        with:
+          path: './__tests__/test-files/03-dot-files'
+          pattern: "^\\..+$"
+
+      - uses: ./
+        with:
+          path: './__tests__/test-files/04-no-dot-files'
+          pattern: ^[^\\.]+"
+
+      - uses: ./
+        with:
+          path: './__tests__/test-files/05-contains-a-files'
+          pattern: "a+"
+
+      - uses: ./
+        with:
+          path: './__tests__/test-files/06-json-files'
+          pattern: "\\.json$"
