@@ -11,6 +11,20 @@ are followed in a given folder in your repository.
 
 ![Sample Report](./assets/sample-report.png)
 
+## Example usage
+
+to ensure all files match the pattern `/^.+\..+$/` in the `my-files` directory, use the following:
+
+```yml
+uses: batista/lint-filenames@v1
+name: Validating my-folder filenames
+with:
+  path: './my-folder'
+  pattern: '^.+\\..+$'
+```
+
+---
+
 ## Inputs
 
 ### `path`
@@ -32,18 +46,6 @@ _For more examples, see [`./test.js`](./test.js)._
 ### `total-files-analyzed`
 
 The number of files analyzed.
-
-## Example usage
-
-to ensure all files match the pattern `/^.+\..+$/` in the `my-files` directory, use the following:
-
-```yml
-uses: batista/lint-filenames@v1
-name: Validating my-folder filenames
-with:
-  path: './my-folder'
-  pattern: '^.+\\..+$'
-```
 
 ---
 
@@ -112,7 +114,3 @@ with:
 ```
 
 See the [actions tab](https://github.com/batista/lint-filenames/actions) for runs of this action! :rocket:
-
-## Usage:
-
-After testing you can [create a v1 tag](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md) to reference the stable and latest V1 action
