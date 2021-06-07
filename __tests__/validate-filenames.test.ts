@@ -12,6 +12,10 @@ const TEST_CONFIGS = {
   noDot: { path: '04-no-dot-files', pattern: '^[^\\.].+$' },
   containsA: { path: '05-contains-a-files', pattern: 'a+' },
   json: { path: '06-json-files', pattern: '\\.json$' },
+  includeFolders: {
+    path: '07-include-folders',
+    pattern: '^[a-z0-9]+(-[a-z0-9]+)*$',
+  },
 };
 
 let spy: jest.SpyInstance;
@@ -28,7 +32,7 @@ afterEach(() => {
 describe('Name of the group', () => {
   it('01 - Passes for any character files', async () => {
     const testConfig = TEST_CONFIGS.anyCharacter;
-    const path = nodePath.join(__dirname, 'test-files', testConfig.path);
+    const path = nodePath.join(__dirname, 'test-files', testConfig.path) + '/*';
     const pattern = new RegExp(testConfig.pattern);
 
     const expected = { totalFilesAnalyzed: 5, failedFiles: [] };
@@ -38,7 +42,7 @@ describe('Name of the group', () => {
 
   it('02 - Passes for `name.ext` files', async () => {
     const testConfig = TEST_CONFIGS.nameDotExtension;
-    const path = nodePath.join(__dirname, 'test-files', testConfig.path);
+    const path = nodePath.join(__dirname, 'test-files', testConfig.path) + '/*';
     const pattern = new RegExp(testConfig.pattern);
 
     const expected = { totalFilesAnalyzed: 1, failedFiles: [] };
@@ -48,7 +52,8 @@ describe('Name of the group', () => {
 
   it('03 - Passes for `.dotfiles`', async () => {
     const testConfig = TEST_CONFIGS.dotFile;
-    const path = nodePath.join(__dirname, 'test-files', testConfig.path);
+    const path =
+      nodePath.join(__dirname, 'test-files', testConfig.path) + '/.*';
     const pattern = new RegExp(testConfig.pattern);
 
     const expected = { totalFilesAnalyzed: 1, failedFiles: [] };
@@ -58,7 +63,7 @@ describe('Name of the group', () => {
 
   it('04 - Passes for no `.dotfiles`', async () => {
     const testConfig = TEST_CONFIGS.noDot;
-    const path = nodePath.join(__dirname, 'test-files', testConfig.path);
+    const path = nodePath.join(__dirname, 'test-files', testConfig.path) + '/*';
     const pattern = new RegExp(testConfig.pattern);
 
     const expected = { totalFilesAnalyzed: 5, failedFiles: [] };
@@ -68,7 +73,7 @@ describe('Name of the group', () => {
 
   it('05 - Passes for files with `a` in the name', async () => {
     const testConfig = TEST_CONFIGS.containsA;
-    const path = nodePath.join(__dirname, 'test-files', testConfig.path);
+    const path = nodePath.join(__dirname, 'test-files', testConfig.path) + '/*';
     const pattern = new RegExp(testConfig.pattern);
 
     const expected = { totalFilesAnalyzed: 5, failedFiles: [] };
@@ -78,10 +83,21 @@ describe('Name of the group', () => {
 
   it('06 - Passes for json files `*.json`', async () => {
     const testConfig = TEST_CONFIGS.json;
-    const path = nodePath.join(__dirname, 'test-files', testConfig.path);
+    const path = nodePath.join(__dirname, 'test-files', testConfig.path) + '/*';
     const pattern = new RegExp(testConfig.pattern);
 
     const expected = { totalFilesAnalyzed: 5, failedFiles: [] };
+
+    await expect(validateFilenames(path, pattern)).resolves.toEqual(expected);
+  });
+
+  it('07 - Passes for folders', async () => {
+    const testConfig = TEST_CONFIGS.includeFolders;
+    const path =
+      nodePath.join(__dirname, 'test-files', testConfig.path) + '/**';
+    const pattern = new RegExp(testConfig.pattern);
+
+    const expected = { totalFilesAnalyzed: 6, failedFiles: [] };
 
     await expect(validateFilenames(path, pattern)).resolves.toEqual(expected);
   });
