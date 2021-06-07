@@ -15,7 +15,7 @@ are followed in a given folder in your repository.
 
 ### `path`
 
-**Required** The path to a directory to check the filenames.
+**Required** A [glob path](https://github.com/isaacs/node-glob) to search for files.
 
 ### `pattern`
 
@@ -74,9 +74,10 @@ $ npm test
     ✓ 04 - Passes for no `.dotfiles`
     ✓ 05 - Passes for files with `a` in the name (1 ms)
     ✓ 06 - Passes for json files `*.json` (1 ms)
+    √ 07 - Passes for folders (3 ms)
 
 Test Suites: 1 passed, 1 total
-Tests:       6 passed, 6 total
+Tests:       7 passed, 7 total
 Snapshots:   0 total
 Time:        0.559 s, estimated 2 s
 Ran all test suites.

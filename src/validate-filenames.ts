@@ -1,4 +1,6 @@
-import fs from 'fs';
+import { promisify } from 'util';
+import g from 'glob';
+const glob = promisify(g);
 
 export async function validateFilenames(
   path: string,
@@ -9,24 +11,26 @@ export async function validateFilenames(
 }> {
   console.log(`ℹ️  Path:    \t\t'${path}'`);
   console.log(`ℹ️  Pattern: \t\t${pattern}`);
-  const opendir = fs.promises.opendir;
   const failedFiles = [];
   let totalFilesAnalyzed = 0;
 
   try {
-    const dir = await opendir(path);
+    const filesList = await glob(path);
+    const files = filesList.map(f => {
+      return {
+        fullPath: f,
+        name: f.split('/').pop() || '',
+      };
+    });
 
     console.log('Verification starting...');
-    for await (const dirent of dir) {
-      if (dirent.isDirectory()) {
-        continue;
-      }
+    for await (const file of files) {
       totalFilesAnalyzed++;
-      if (pattern.test(dirent.name)) {
-        console.log(`  ✔️  ${dirent.name}`);
+      if (pattern.test(file.name)) {
+        console.log(`  ✔️  ${file.fullPath}`);
       } else {
-        console.log(`  ❌  ${dirent.name}`);
-        failedFiles.push(dirent.name);
+        console.log(`  ❌  ${file.fullPath}`);
+        failedFiles.push(file.fullPath);
       }
     }
     console.log('Verification finished.');
