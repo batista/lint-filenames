@@ -1,4 +1,4 @@
-name: 'Lint Filenames'
+name: 'Lint Filenames Glob'
 description: 'This github action validates if all files in a given folder match the given regex pattern.'
 branding:
   icon: 'folder'
