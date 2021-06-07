@@ -1,6 +1,6 @@
 {
   "name": "lint-filenames",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "description": "This github action validates if all files in a given folder match the given regex pattern.",
   "main": "lib/main.js",
