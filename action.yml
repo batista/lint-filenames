@@ -16,5 +16,5 @@ outputs:
   total-files-analyzed:
     description: 'The number of files analyzed.'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
