@@ -1,8 +1,8 @@
 # Lint Filenames action
 
 <p align="center">
-  <a href="https://github.com/batista/lint-filenames/actions?query=workflow%3Abuild-test"><img alt="build-test action status" src="https://github.com/batista/lint-filenames/workflows/build-test/badge.svg"></a>
-  <a href="https://github.com/batista/lint-filenames/actions?query=workflow%3ACodeQL"><img alt="code-ql status" src="https://github.com/batista/lint-filenames/workflows/CodeQL/badge.svg"></a>
+  <a href="https://github.com/batista/lint-filenames/actions?query=workflow%3Abuild-test+branch%3Amaster"><img alt="build-test action status" src="https://github.com/batista/lint-filenames/workflows/build-test/badge.svg?branch=master"></a>
+  <a href="https://github.com/batista/lint-filenames/actions?query=workflow%3ACodeQL+branch%3Amaster"><img alt="code-ql action status" src="https://github.com/batista/lint-filenames/workflows/CodeQL/badge.svg?branch=master"></a>
   <a href="https://github.com/batista/lint-filenames/blob/main/LICENSE"><img alt="license MIT" src="https://img.shields.io/github/license/batista/lint-filenames"></a>
 </p>
 
