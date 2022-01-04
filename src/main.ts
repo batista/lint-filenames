@@ -25,7 +25,11 @@ async function run(): Promise<void> {
     const payload = JSON.stringify(github.context.payload, undefined, 2);
     core.debug(`The event payload: ${payload}`);
   } catch (error) {
-    core.setFailed(error.message);
+    if (error instanceof Error) {
+      core.setFailed(error);
+    } else {
+      core.setFailed('An unknown error occurred. Check the logs for details');
+    }
   }
 }
 
