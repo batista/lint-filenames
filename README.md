@@ -22,9 +22,9 @@ are followed in a given folder in your repository.
 
 **Required** The _escaped_ regex pattern to match for each of the files in the given directory.
 
-  - _NOTE:_ the pattern needs to have all backslashes (`\`) escaped, i.e. for each `\` you need
+- _NOTE:_ the pattern needs to have all backslashes (`\`) escaped, i.e. for each `\` you need
   to replace with `\\`.
-  - Example: `/^\d+\.jpg$/` should be `/^\\d+\\.jpg$/`.
+- Example: `/^\d+\.jpg$/` should be `/^\\d+\\.jpg$/`.
 
 _For more examples, see [`./__tests__/validate-filenames.test.ts`](./__tests__/validate-filenames.test.ts)._
 
