@@ -3,6 +3,7 @@
 <p align="center">
   <a href="https://github.com/batista/lint-filenames/actions?query=workflow%3Abuild-test+branch%3Amaster"><img alt="build-test action status" src="https://github.com/batista/lint-filenames/workflows/build-test/badge.svg?branch=master"></a>
   <a href="https://github.com/batista/lint-filenames/actions?query=workflow%3ACodeQL+branch%3Amaster"><img alt="code-ql action status" src="https://github.com/batista/lint-filenames/workflows/CodeQL/badge.svg?branch=master"></a>
+  <a href="https://github.com/batista/lint-filenames/actions/workflows/codacy-analysis.yml"><img alt="Codacy Security Scan" src="https://github.com/batista/lint-filenames/actions/workflows/codacy-analysis.yml/badge.svg?branch=master"></a>
   <a href="https://github.com/batista/lint-filenames/blob/main/LICENSE"><img alt="license MIT" src="https://img.shields.io/github/license/batista/lint-filenames"></a>
 </p>
 
@@ -25,7 +26,7 @@ are followed in a given folder in your repository.
   to replace with `\\`.
 - Example: `/^\d+\.jpg$/` should be `/^\\d+\\.jpg$/`.
 
-_For more examples, see [`./test.js`](./test.js)._
+_For more examples, see [`./__tests__/validate-filenames.test.ts`](./__tests__/validate-filenames.test.ts)._
 
 ## Outputs
 
@@ -52,19 +53,19 @@ with:
 Install the dependencies
 
 ```bash
-$ npm install
+npm install
 ```
 
 Build the typescript and package it for distribution
 
 ```bash
-$ npm run build && npm run package
+npm run build && npm run package
 ```
 
 Run the tests :heavy_check_mark:
 
 ```bash
-$ npm test
+npm test
 
  PASS  __tests__/validate-filenames.test.ts
   Name of the group
@@ -113,6 +114,6 @@ with:
 
 See the [actions tab](https://github.com/batista/lint-filenames/actions) for runs of this action! :rocket:
 
-## Usage:
+## Usage
 
 After testing you can [create a v1 tag](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md) to reference the stable and latest V1 action
