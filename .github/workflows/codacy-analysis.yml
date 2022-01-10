@@ -15,9 +15,6 @@ name: Codacy Security Scan
 
 on:
   push:
-    # Dependabot triggered push events have read-only access, but uploading code
-    # scanning requires write access.
-    branches-ignore: [dependabot/**]
     branches: [ master ]
   pull_request:
     # The branches below must be a subset of the branches above
